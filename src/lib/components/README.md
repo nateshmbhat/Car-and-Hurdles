@@ -1,6 +1,6 @@
-## This directory contains UI components that are going to be used in the project.
+### Contains UI components that are going to be used in the project.
 
-### Conventions : 
+#### Conventions : 
 
 + Header file unique name macro ( CAH means Car And Hurdles ) :
     `_CAH_COMPONENT_<file name uppercased>_`

@@ -1,8 +1,8 @@
-## This directory contains all the header files and libraries that are going to be used in the project.
+### Contains all the header files and libraries that are going to be used in the project.
 
 
 
-### Conventions (Only current directory files) : 
+#### Conventions (Only current directory files) : 
 
 + Header file unique name macro ( CAH means Car And Hurdles ) :
     `_CAH_<file name uppercased>_`
