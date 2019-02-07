@@ -1,2 +1,2 @@
 # Car-and-Hurdles
-A game implemented using the glut implementation of Open GL 
+A game built using the libraries which implement Open GL 
