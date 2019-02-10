@@ -1,6 +1,6 @@
 //This file contains all the basic data structures (like custom structures) and custom macros that are going to be used in the project
-#ifndef _CAH_BASIC_STRUCTURES_ 
-#define _CAH_BASIC_STRUCTURES_
+
+#pragma once
 
 // Screen boundaries 
 #define SCREEN_X_LOW -100 
@@ -33,4 +33,108 @@ typedef struct{
     float x, y , z ;
 } Point ; 
 
-#endif
+
+class CameraController{
+    CameraController(){} ; //disable object creation here
+    static Point up  ; 
+    static Point eye  ; 
+    static Point ref  ;
+    static int changeValue ; 
+    static int current ; 
+
+public : 
+    const static int EYE = 0 , TARGET = 1 , UP = 2  ; 
+    static void changeMode(int ) ; 
+    static void setNextMode() ; 
+    static void executeLookAt() ; 
+    static void incZ() ; 
+    static void incY() ; 
+    static void incX() ; 
+    static void decZ() ; 
+    static void decX() ; 
+    static void decY() ; 
+    static void setChangeValue(const int &) ; 
+} ; 
+
+    Point CameraController::up = {0 , SCREEN_Y_HIGH , 0} ; 
+    Point CameraController::eye =  { 0 , 0 , 400  } ; 
+    Point CameraController::ref =  {0 , 0 , 0 } ; 
+    int CameraController::current = CameraController::EYE ; 
+    int CameraController::changeValue = 5 ; 
+
+
+    void CameraController::changeMode(int mode){ //cur is the flag : EYE , TARGET , UP
+        //sets the current vector that is active and enables that vector to change
+        current = mode ; 
+    }
+
+    void CameraController::setNextMode(){
+        current = (current+1)%3 ;
+    } 
+    
+
+    void CameraController::executeLookAt(){
+        glMatrixMode(GL_MODELVIEW) ; 
+        glLoadIdentity() ; 
+        gluLookAt(eye.x ,eye.y , eye.z , ref.x , ref.y , ref.z , up.x , up.y , up.z) ; 
+    }
+
+    void CameraController::setChangeValue(const int & val){
+        // sets the amount by which coordinates change .
+        changeValue = val ;             
+    }
+
+
+    // Increment or decrement the corresponding coordinates based on the current vector being controlled
+    void CameraController::incZ(){
+        switch(current){
+
+        case 0 : eye.z+=1 ; break; 
+        case 1 : ref.z+=1 ; break; 
+        case 2 : up.z+=1 ; break; 
+
+       }
+    }
+
+    void CameraController:: decY(){
+        switch (current)
+       {
+           case 0 : eye.y-=changeValue ; break; 
+           case 1 : ref.y-=changeValue ; break; 
+           case 2 : up.y-=changeValue ; break; 
+       }
+    }
+
+
+    void CameraController::decX(){
+        switch (current)
+       {
+           case 0 : eye.x-=changeValue ; break; 
+           case 1 : ref.x-=changeValue ; break; 
+           case 2 : up.x-=changeValue ; break; 
+       }
+    }
+    void CameraController::incX(){
+        switch (current)
+       {
+           case 0 : eye.x+=changeValue ; break; 
+           case 1 : ref.x+=changeValue ; break; 
+           case 2 : up.x+=changeValue ; break; 
+       }
+    }
+    void CameraController::incY(){
+    switch (current)
+       {
+           case 0 : eye.y+=changeValue ; break; 
+           case 1 : ref.y+=changeValue ; break; 
+           case 2 : up.y+=changeValue ; break; 
+       }
+    }
+    void CameraController::decZ(){
+        switch (current)
+       {
+           case 0 : eye.z-=1 ; break; 
+           case 1 : ref.z-=1 ; break; 
+           case 2 : up.z-=1 ; break; 
+       }
+    }
