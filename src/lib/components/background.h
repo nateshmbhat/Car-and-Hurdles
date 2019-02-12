@@ -11,13 +11,11 @@ void drawBackGround(){
     // Draws two columns on the screen which are of different colors
     glPushMatrix() ; 
         colorIndigo() ; 
-        glTranslated(SCREEN_X_LOW, 0 , 0) ; 
-        glutWireTeapot(100) ; 
+        glutWireTeapot(200) ; 
     glPopMatrix() ; 
 
     glPushMatrix() ; 
         colorGrey(0.8) ; 
-        glTranslated(SCREEN_X_HIGH, 0 , 0) ; 
         glutWireCube(100) ; 
     glPopMatrix() ; 
 
