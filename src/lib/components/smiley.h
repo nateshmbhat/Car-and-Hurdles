@@ -32,7 +32,6 @@ void drawSmiley()
     glVertex2f(.25, .2);
     glEnd();
 
-    glFlush();
 }
 
 #endif
