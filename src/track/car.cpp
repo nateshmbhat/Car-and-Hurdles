@@ -5,7 +5,83 @@ using namespace std;
 
 void renderCar()
 {
-    glColor3d(1, 1, 1);
+    // Right Side
+    glColor3d(0, 0, 1);
+    glBegin(GL_POLYGON);
+    glVertex3d(5, 0, -1);
+    glVertex3d(2, 1, -0.5);
+    glVertex3d(-3, 1, -0.5);
+    glVertex3d(-3.5, 0.5, -1);
+    glVertex3d(-3, -1, -0.5);
+    glVertex3d(4, -1, -0.5);
+    glEnd();
+
+    // Left Side
+    glColor3d(0, 0, 1);
+    glBegin(GL_POLYGON);
+    glVertex3d(5, 0, 1);
+    glVertex3d(2, 1, 0.5);
+    glVertex3d(-3, 1, 0.5);
+    glVertex3d(-3.5, 0.5, 1);
+    glVertex3d(-3, -1, 0.5);
+    glVertex3d(4, -1, 0.5);
+    glEnd();
+
+    // Top Chassis
+    glColor3d(0, 0, 1);
+    glBegin(GL_POLYGON);
+    glVertex3d(-3, -1, -1);
+    glVertex3d(-3, -1, 1);
+    glVertex3d(4, -1, -1);
+    glVertex3d(-4, -1, 1);
+    glEnd();
+
+    // Bottom Chassis
+    glColor3d(0, 0, 0);
+    glBegin(GL_POLYGON);
+    glVertex3d(-3, 1, -1);
+    glVertex3d(-3, 1, 1);
+    glVertex3d(2, 1, -1);
+    glVertex3d(-2, 1, 1);
+    glEnd();
+
+    // Front WindShield
+    glColor3d(0, 0, 0);
+    glBegin(GL_POLYGON);
+    glVertex3d(5, 0, -1);
+    glVertex3d(2, 1, -0.5);
+    glVertex3d(2, 1, 0.5);
+    glVertex3d(5, 0, 1);
+    glEnd();
+
+    // Front Bottom Part
+    glColor3d(0, 0, 1);
+    glBegin(GL_POLYGON);
+    glVertex3d(5, 0, -1);
+    glVertex3d(4, -1, -0.5);
+    glVertex3d(4, -1, 0.5);
+    glVertex3d(5, 0, 1);
+    glEnd();
+
+    // Rear Windshield
+    glColor3d(0, 0, 0);
+    glBegin(GL_POLYGON);
+    glVertex3d(-3.5, 0.5, -1);
+    glVertex3d(-3, 1, -0.5);
+    glVertex3d(-3, 1, 0.5);
+    glVertex3d(-3.5, 0.5, 1);
+    glEnd();
+
+    // Read Bottom Part
+    glColor3d(0, 0, 1);
+    glBegin(GL_POLYGON);
+    glVertex3d(-3.5, 0.5, -1);
+    glVertex3d(-3, -1, -0.5);
+    glVertex3d(-3, -1, 0.5);
+    glVertex3d(-3.5, 0.5, 1);
+    glEnd();
+    
+    glFlush();
 }
 
 void reshape()
@@ -26,12 +102,7 @@ void display()
 
     reshape();
 
-    glPushMatrix();
-    glLoadIdentity();
-    glScaled(0.5, 0.5, 0.5);
     renderCar();
-
-    glPopMatrix();
 
     glutSwapBuffers();
 }
