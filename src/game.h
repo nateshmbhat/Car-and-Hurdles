@@ -9,52 +9,149 @@
 class Game
 {
     static float speed;
-    static vector<Tree> trees;
+    static int score; //score of the player , goes increasing as he moves forward.
+    static int collisionDistance;  // if the distance between car and object is within this value , its treated as collision
+    static list<Tree> trees;
+    static unsigned long long int counter; //this is used to create objects at regular intervals
 
   public:
     static void setSpeed(float x) { speed = x; }
     static float getSpeed() { return speed; }
 
-
-    static void handleObjects()
+    static void mainGameLoop() // runs every time the screen renders . Do all the game logic from here
     {
-        for(int i=0 ;i < trees.size() ; i++)
-            trees[i].renderTree(); 
+        counter++;
+        if (counter == 100)
+        {
+            if (trees.size() > 30)
+            { //remove trees that are out of screen for long
+                trees.pop_front();
+            }
+            createTree();
+            cout<<" SCORE TILL NOW = " << score ; 
+            score+=1 ; 
+            counter = 0;
+        }
 
+        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        {
+            Tree &mytree = *tree;
+            mytree.makeTreeMovement();
+            mytree.renderTree();
+        }
+
+        handleCollisionWithTrees() ; 
         Car::renderCar();
-
+        
         FrontCurtain::handleCurtainDisplay();
     }
 
+    static void createTree()
+    {
+        Tree tree(speed);
+        trees.push_back(tree);
+    }
 
+    static void handleCollisionWithTrees(){ //checks if the car collides with trees
+        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        {
+            Tree &mytree = *tree;
+            if(abs(Car::getZ() - mytree.getZ())<collisionDistance && abs(Car::getX()-mytree.getX())<collisionDistance){
+                cout<<"COLLISION DETECTED : Score = " << score <<endl; 
+                score-=1 ; 
+            }
+        }
+    }
 
+    static void accelerate()
+    {
+        speed = speed * 1.05;
+        accelerateObjects() ; 
+        Car::goForward() ; 
+    }
+
+    static void decelerate()
+    {
+        speed = speed * 0.95;
+        decelerateObjects() ; 
+        Car::goBackward(); 
+    }
+
+    static void accelerateObjects()
+    {
+        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        {
+            Tree &mytree = *tree;
+            mytree.setSpeed(speed); //accelerate
+        }
+    }
+
+    static void decelerateObjects()
+    {
+        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        {
+            Tree &mytree = *tree;
+            mytree.setSpeed(speed); //decelerate
+        }
+    }
+
+    static void handleKeyPress(int key)
+    {
+        switch (key)
+        {
+        case ARROW_UP:
+            accelerate();
+            break;
+        case ARROW_DOWN:
+            decelerate();
+            break;
+        case ARROW_LEFT:
+            Car::goLeft();
+            break;
+        case ARROW_RIGHT:
+            Car::goRight();
+            break;
+        }
+    }
+
+  private:
+    static void renderRoad()
+    {
+        glPushMatrix();
+        // @sadiq draw the road within this block
+
+        glPopMatrix();
+    }
 
     static void moveAllTreesForward()
     {
-        for (int i = 0; i < trees.size(); i++)
-            trees[i].incZ();
+        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+            (*tree).incZ();
     }
 
     static void moveAllTreesBackward()
     {
-        for (int i = 0; i < trees.size(); i++)
-            trees[i].decZ();
+        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+            (*tree).decZ();
     }
 
     static void moveAllTreesLeft()
     {
-        for (int i = 0; i < trees.size(); i++)
-            trees[i].decX();
+        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+            (*tree).decX();
     }
 
     static void moveAllTreesRight()
     {
-        for (int i = 0; i < trees.size(); i++)
+        for (auto tree = trees.begin(); tree != trees.end(); tree++)
         {
-            trees[i].incX();
+            (*tree).incX();
         }
     }
 };
 
-float Game::speed = 0.0001;
-vector<Tree> Game::trees ; 
+float Game::speed = 1;
+int Game::score = 0;
+int Game::collisionDistance= 5;
+unsigned long long int Game::counter = 0;
+list<Tree> Game::trees;

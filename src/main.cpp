@@ -1,8 +1,6 @@
 // DRIVER PROGRAM
 #include <iostream>
 #include <iomanip>
-#include "lib/components/line.h"
-#include "lib/components/background.h"
 #include "lib/components/tree.cpp"
 #include "lib/basicStructures.h"
 #include "lib/eventHandlers/mouse.h"
@@ -21,9 +19,7 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1, 1, 1, 0);
 
-    Game::handleObjects() ; 
-   
-    FrontCurtain::handleCurtainDisplay() ;
+    Game::mainGameLoop() ; 
 
     glutSwapBuffers();
 }

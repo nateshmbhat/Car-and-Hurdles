@@ -12,32 +12,36 @@ class Car
     static int scalex, scaley, scalez;
 
   public:
-    static void incX()
+    static float getX(){return x ; }
+    static float getY(){return y ; }
+    static float getZ(){return z ; }
+
+    static void goRight()
     {
         x+=changeAmount;
     }
 
-    static void decX()
+    static void goLeft()
     {
         x-=changeAmount;
     }
 
-    static void incZ()
-    {
-        z+=changeAmount;
-    }
-
-    static void decZ()
+    static void goForward()
     {
         z-=changeAmount;
     }
 
-    static void incY()
+    static void goBackward()
+    {
+        z+=changeAmount;
+    }
+
+    static void goUp()
     {
         y+=changeAmount;
     }
 
-    static void decY()
+    static void goDown()
     {
         y-=changeAmount;
     }
@@ -54,5 +58,5 @@ class Car
     }
 };
 
-float Car::x = 0, Car::y, Car::z, Car::changeAmount;
+float Car::x = 0, Car::y, Car::z = 300 , Car::changeAmount = 1;
 int Car::scalex = 1, Car::scaley = 1, Car::scalez = 1;

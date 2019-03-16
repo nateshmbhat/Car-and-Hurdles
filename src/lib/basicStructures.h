@@ -56,7 +56,7 @@ class CameraController
     static void setChangeValue(const int &);
 };
 
-Point CameraController::up = {0, SCREEN_Y_HIGH, 0};
+Point CameraController::up = {0, 1 , 0};
 Point CameraController::eye = {0, 0, 400};
 Point CameraController::ref = {0, 0, 0};
 int CameraController::current = CameraController::EYE;

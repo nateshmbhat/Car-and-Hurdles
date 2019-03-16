@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GL/glut.h>
+#include<time.h>
 
 class Tree
 {
@@ -9,47 +10,59 @@ class Tree
     int scalex, scaley, scalez;
 
   public:
-    Tree()
+    Tree(float sp):speed(sp)
     {
-        x = y = z = 0;
+        srand(time(NULL)) ; 
+        z = -400 ; 
+        x = -25 ;
+        x += rand()%50 ; 
         changeAmount = 1;
-        speed = 0.0001;
         scalex = scaley = scalez = 1;
     }
 
+    float getX(){return x ; }
+    float getY(){return y ; }
+    float getZ(){return z ; }
+
+    void setSpeed(float s){
+        speed =s ; 
+    }
+    float getSpeed(){
+        return speed ; 
+    }
     void incX()
     {
-        x+=changeAmount;
+        x += changeAmount;
     }
 
     void decX()
     {
-        x-=changeAmount;
+        x -= changeAmount;
     }
 
     void incZ()
     {
-        z+=changeAmount;
+        z += changeAmount;
     }
 
     void decZ()
     {
-        z-=changeAmount;
+        z -= changeAmount;
     }
 
     void incY()
     {
-        y+=changeAmount;
+        y += changeAmount;
     }
 
     void decY()
     {
-        y-=changeAmount;
+        y -= changeAmount;
     }
 
     void makeTreeMovement()
     {
-        z+= speed ; 
+        z += speed;
     }
 
     void renderTree()
