@@ -46,45 +46,140 @@ class Car
         y -= changeAmount;
     }
 
-    static void designCar()
+    static void renderDesign()
     {
+        glEnable(GL_DEPTH_TEST);
 
-        // Back WindShield  
-        glColor3d(0, 0, 0);
-        glBegin(GL_POLYGON);
-        glVertex3d(12, 12, 20);
-        glVertex3d(-12, 12, 20);
-        glVertex3d(-12, -4, 20);
-        glVertex3d(12, -4, 20);
-        glEnd();
-
-        // Back Look
+        // Left Side
         glColor3d(0, 0, 1);
         glBegin(GL_POLYGON);
-        glVertex3d(15, 15, 20);
-        glVertex3d(-15, 15, 20);
-        glVertex3d(-15, -15, 20);
-        glVertex3d(15, -15, 20);
+        glVertex3d(-17.5, -15, 30);
+        glVertex3d(-17.5, -15, -55);
+        glVertex3d(-17.5, -10, -60);
+        glVertex3d(-17.5, 10, -60);
+        glVertex3d(-17.5, 10, -40);
+        glVertex3d(-17.5, 20, -30);
+        glVertex3d(-17.5, 20, 25);
+        glVertex3d(-17.5, 15, 30);
+        glEnd();
+
+        // Left Window Glasses
+        glColor3d(0, 0, 0);
+        glBegin(GL_POLYGON);
+        glVertex3d(-17.8, 5, 25);
+        glVertex3d(-17.8, 5, -35);
+        glVertex3d(-17.8, 10, -37);
+        glVertex3d(-17.8, 18, -28);
+        glVertex3d(-17.8, 18, 22);
+        glVertex3d(-17.8, 15, 25);
+        glEnd();
+
+        // Right Side
+        glColor3d(0, 0, 1);
+        glBegin(GL_POLYGON);
+        glVertex3d(17.5, -15, 30);
+        glVertex3d(17.5, -15, -55);
+        glVertex3d(17.5, -10, -60);
+        glVertex3d(17.5, 10, -60);
+        glVertex3d(17.5, 10, -40);
+        glVertex3d(17.5, 20, -30);
+        glVertex3d(17.5, 20, 25);
+        glVertex3d(17.5, 15, 30);
+        glEnd();
+
+        // Right Window Glasses
+        glColor3d(0, 0, 0);
+        glBegin(GL_POLYGON);
+        glVertex3d(17.8, 5, 25);
+        glVertex3d(17.8, 5, -35);
+        glVertex3d(17.8, 10, -37);
+        glVertex3d(17.8, 18, -28);
+        glVertex3d(17.8, 18, 22);
+        glVertex3d(17.8, 15, 25);
+        glEnd();
+
+        // Back Truck Cover
+        glColor3d(0, 0, 1);
+        glBegin(GL_POLYGON);
+        glVertex3d(-17.5, -15, 30);
+        glVertex3d(-17.5, 15, 30);
+        glVertex3d(17.5, 15, 30);
+        glVertex3d(17.5, -15, 30);
+        glEnd();
+
+        // Back Windshield
+        glColor3d(0, 0, 0);
+        glBegin(GL_POLYGON);
+        glVertex3d(-17.5, 15, 30);
+        glVertex3d(-17.5, 20, 25);
+        glVertex3d(17.5, 20, 25);
+        glVertex3d(17.5, 15, 30);
         glEnd();
 
         // Roof
         glColor3d(0, 0, 1);
         glBegin(GL_POLYGON);
-        glVertex3d(15, 15, -20);
-        glVertex3d(15, 15, 20);
-        glVertex3d(-15, 15, 20);
-        glVertex3d(-15, 15, -20);
+        glVertex3d(-17.5, 20, 25);
+        glVertex3d(-17.5, 20, -30);
+        glVertex3d(17.5, 20, -30);
+        glVertex3d(17.5, 20, 25);
         glEnd();
 
-        // Car Panoromic View
+        // Front Windshield
         glColor3d(0, 0, 0);
         glBegin(GL_POLYGON);
-        glVertex3d(0, 15, -8);
-        glVertex3d(14, 15, 0);
-        glVertex3d(14, 15, 18);
-        glVertex3d(-14, 15, 18);
-        glVertex3d(-14, 15, 0);
+        glVertex3d(-17.5, 20, -30);
+        glVertex3d(17.5, 20, -30);
+        glVertex3d(17.5, 10, -40);
+        glVertex3d(-17.5, 10, -40);
         glEnd();
+
+        // Front Bonnet
+        glColor3d(0, 0, 1);
+        glBegin(GL_POLYGON);
+        glVertex3d(-17.5, 10, -40);
+        glVertex3d(-17.5, 10, -60);
+        glVertex3d(17.5, 10, -60);
+        glVertex3d(17.5, 10, -40);
+        glEnd();
+
+        // Front Grill
+        glColor3d(0, 0, 1);
+        glBegin(GL_POLYGON);
+        glVertex3d(-17.5, 10, -60);
+        glVertex3d(-17.5, -15, -60);
+        glVertex3d(17.5, -15, -60);
+        glVertex3d(17.5, 10, -60);
+        glEnd();
+
+        // Left Stop Light
+        glColor3d(1, 0, 0);
+        glBegin(GL_QUADS);
+        glVertex3d(-15, -5, 31);
+        glVertex3d(-10, -5, 31);
+        glVertex3d(-10, 0, 31);
+        glVertex3d(-15, 0, 31);
+        glEnd();
+
+        // Right Stop Light
+        glColor3d(1, 0, 0);
+        glBegin(GL_QUADS);
+        glVertex3d(15, -5, 31);
+        glVertex3d(10, -5, 31);
+        glVertex3d(10, 0, 31);
+        glVertex3d(15, 0, 31);
+        glEnd();
+
+        // Symbol in the middle
+        glColor3d(0, 1, 0);
+        glBegin(GL_QUADS);
+        glVertex3d(0, 0, 31);
+        glVertex3d(3, 5, 31);
+        glVertex3d(0, -10, 31);
+        glVertex3d(-3, 5, 31);
+        glEnd();
+
+        glDisable(GL_DEPTH_TEST);
 
         glFlush();
     }
@@ -95,10 +190,10 @@ class Car
         glPushMatrix();
         glColor3f(0, 1, 1);
         glTranslatef(x, y, z);
-        // glScalef(scalex, scaley, scalez);
-        glScalef(0.1, 0.1, 1);
+        glScalef(scalex, scaley, scalez);
+        glScalef(0.1, 0.1, 0.5);
         // glutWireSphere(10, 50, 50); //assuming this is car.
-        designCar();
+        renderDesign();
         glPopMatrix();
     }
 };

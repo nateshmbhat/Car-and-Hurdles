@@ -43,7 +43,7 @@ void initializeGlut(int argc, char **argv)
     glutMotionFunc(mouseMotionHandler);
     glutIdleFunc(idleHandler);
     glutSpecialFunc(specialKeyHandler);
-    glEnable(GL_DEPTH_TEST);
+    // glEnable(GL_DEPTH_TEST);
 }
 
 int main(int argc, char **argv)
