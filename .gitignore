@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Local Files
+/car.cpp
