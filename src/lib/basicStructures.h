@@ -2,139 +2,156 @@
 
 #pragma once
 
-// Screen boundaries 
-#define SCREEN_X_LOW -100 
+// Screen boundaries
+#define SCREEN_X_LOW -100
 #define SCREEN_Y_LOW -100
 #define SCREEN_X_HIGH 100
-#define SCREEN_Y_HIGH 100 
+#define SCREEN_Y_HIGH 100
 #define SCREEN_Z_LOW -500
-#define SCREEN_Z_HIGH 500
+#define SCREEN_Z_HIGH 1000
 
-
-//Keyboard special keys constants 
+//Keyboard special keys constants
 #define ARROW_UP 101
 #define ARROW_DOWN 103
 #define ARROW_LEFT 100
 #define ARROW_RIGHT 102
-#define MOUSE_UP 3 //using inside the MouseFunc handler
+#define MOUSE_UP 3   //using inside the MouseFunc handler
 #define MOUSE_DOWN 4 //using inside the MouseFunc handler
 
+//Various colors
+#define colorRed() glColor3f(1, 0, 0);
+#define colorGreen() glColor3f(0, 1, 0);
+#define colorBlue() glColor3f(0, 0, 1);
+#define colorYellow() glColor3f(1, 1, 0);
+#define colorIndigo() glColor3f(0, 1, 1);
+#define colorGrey(value) glColor3f(value, value, value); //value lies between 0 and 1
 
-//Various colors 
-#define colorRed() glColor3f(1 , 0 , 0) ; 
-#define colorGreen() glColor3f(0 , 1 , 0) ; 
-#define colorBlue() glColor3f(0 , 0, 1) ; 
-#define colorYellow() glColor3f(1 , 1 , 0) ; 
-#define colorIndigo() glColor3f(0 , 1, 1) ; 
-#define colorGrey(value) glColor3f(value , value , value) ;  //value lies between 0 and 1
-
-
-typedef struct{
-    float x, y , z ;
-} Point ; 
-
-
-class CameraController{
-    CameraController(){} ; //disable object creation here
-    static Point up  ; 
-    static Point eye  ; 
-    static Point ref  ;
-    static int changeValue ; 
-    static int current ; 
-
-public : 
-    const static int EYE = 0 , TARGET = 1 , UP = 2  ; 
-    static void changeMode(int ) ; 
-    static void setNextMode() ; 
-    static void executeLookAt() ; 
-    static void incZ() ; 
-    static void incY() ; 
-    static void incX() ; 
-    static void decZ() ; 
-    static void decX() ; 
-    static void decY() ; 
-    static void setChangeValue(const int &) ; 
-} ; 
-
-    Point CameraController::up = {0 , SCREEN_Y_HIGH , 0} ; 
-    Point CameraController::eye =  { 0 , 0 , 400  } ; 
-    Point CameraController::ref =  {0 , 0 , 0 } ; 
-    int CameraController::current = CameraController::EYE ; 
-    int CameraController::changeValue = 5 ; 
+typedef struct
+{
+    float x, y, z;
+} Point;
 
 
-    void CameraController::changeMode(int mode){ //cur is the flag : EYE , TARGET , UP
-        //sets the current vector that is active and enables that vector to change
-        current = mode ; 
-    }
 
-    void CameraController::setNextMode(){
-        current = (current+1)%3 ;
-    } 
-    
+class CameraController
+{
+    CameraController(){}; //disable object creation here
+    static Point up;
+    static Point eye;
+    static Point ref;
+    static int changeValue;
+    static int current;
 
-    void CameraController::executeLookAt(){
-        glMatrixMode(GL_MODELVIEW) ; 
-        glLoadIdentity() ; 
-        gluLookAt(eye.x ,eye.y , eye.z , ref.x , ref.y , ref.z , up.x , up.y , up.z) ; 
-    }
+  public:
+    const static int EYE = 0, TARGET = 1, UP = 2;
+    static void changeMode(int);
+    static void setNextMode();
+    static void executeLookAt();
+    static void incZ();
+    static void incY();
+    static void incX();
+    static void decZ();
+    static void decX();
+    static void decY();
+    static void setChangeValue(const int &);
+};
 
-    void CameraController::setChangeValue(const int & val){
-        // sets the amount by which coordinates change .
-        changeValue = val ;             
-    }
+Point CameraController::up = {0, SCREEN_Y_HIGH, 0};
+Point CameraController::eye = {0, 0, 400};
+Point CameraController::ref = {0, 0, 0};
+int CameraController::current = CameraController::EYE;
+int CameraController::changeValue = 5;
 
+void CameraController::changeMode(int mode)
+{ //current is the flag : EYE , TARGET , UP
+    //sets the current vector that is active and enables that vector to change
+    current = mode;
+}
 
-    // Increment or decrement the corresponding coordinates based on the current vector being controlled
-    void CameraController::incZ(){
-        switch(current){
+void CameraController::setNextMode()
+{
+    current = (current + 1) % 3;
+}
 
-        case 0 : eye.z+=1 ; break; 
-        case 1 : ref.z+=1 ; break; 
-        case 2 : up.z+=1 ; break; 
+void CameraController::executeLookAt()
+{
+    gluLookAt(eye.x, eye.y, eye.z, ref.x, ref.y, ref.z, up.x, up.y, up.z);
+}
 
-       }
-    }
+void CameraController::setChangeValue(const int &val)
+{
+    // sets the amount by which coordinates change .
+    changeValue = val;
+}
 
-    void CameraController:: decY(){
-        switch (current)
-       {
-           case 0 : eye.y-=changeValue ; break; 
-           case 1 : ref.y-=changeValue ; break; 
-           case 2 : up.y-=changeValue ; break; 
-       }
-    }
+// Increment or decrement the corresponding coordinates based on the current vector being controlled
+void CameraController::incZ()
+{
+    glScalef(0.9, 0.9, 0.9);
+}
 
-
-    void CameraController::decX(){
-        switch (current)
-       {
-           case 0 : eye.x-=changeValue ; break; 
-           case 1 : ref.x-=changeValue ; break; 
-           case 2 : up.x-=changeValue ; break; 
-       }
-    }
-    void CameraController::incX(){
-        switch (current)
-       {
-           case 0 : eye.x+=changeValue ; break; 
-           case 1 : ref.x+=changeValue ; break; 
-           case 2 : up.x+=changeValue ; break; 
-       }
-    }
-    void CameraController::incY(){
+void CameraController::decY()
+{
     switch (current)
-       {
-           case 0 : eye.y+=changeValue ; break; 
-           case 1 : ref.y+=changeValue ; break; 
-           case 2 : up.y+=changeValue ; break; 
-       }
+    {
+    case 0:
+        eye.y -= changeValue;
+        break;
+    case 1:
+        ref.y -= changeValue;
+        break;
+    case 2:
+        up.y -= changeValue;
+        break;
     }
-    void CameraController::decZ(){
-        switch (current)
-       {
-           case 0 : eye.z-=1 ; break; 
-           case 1 : ref.z-=1 ; break; 
-           case 2 : up.z-=1 ; break; 
-       }
+}
+
+void CameraController::decX()
+{
+    switch (current)
+    {
+    case 0:
+        eye.x -= changeValue;
+        break;
+    case 1:
+        ref.x -= changeValue;
+        break;
+    case 2:
+        up.x -= changeValue;
+        break;
     }
+}
+void CameraController::incX()
+{
+    switch (current)
+    {
+    case 0:
+        eye.x += changeValue;
+        break;
+    case 1:
+        ref.x += changeValue;
+        break;
+    case 2:
+        up.x += changeValue;
+        break;
+    }
+}
+void CameraController::incY()
+{
+    switch (current)
+    {
+    case 0:
+        eye.y += changeValue;
+        break;
+    case 1:
+        ref.y += changeValue;
+        break;
+    case 2:
+        up.y += changeValue;
+        break;
+    }
+}
+void CameraController::decZ()
+{
+    glScalef(1.1, 1.1, 1.1);
+}

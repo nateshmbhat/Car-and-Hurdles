@@ -9,7 +9,7 @@ class FrontCurtain{
     static float curtainy ;
     static bool done ; 
     static void raiseCurtain(){
-        curtainy+=0.001 ; 
+        curtainy+=1 ; 
     }
     static void drawString(string s){
         glRasterPos2f(-0.8,0+curtainy) ;
@@ -33,7 +33,7 @@ public :
         drawStringSeperate("Key map : use keybaord to control the car", -0.8 , 0.2) ; 
 
         glColor3f(0.5 ,0.5 , 1) ;
-        glRectf(-1 , -1+curtainy , 1 , 1) ; //curtain
+        glRectf(-500 , -500+curtainy , 500 , 500) ; //curtain
         glColor3f(1,0,0) ; 
         glRectf(-1 , -1 +curtainy , 1 , -0.8 +curtainy) ;  
 

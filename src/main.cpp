@@ -1,54 +1,56 @@
-// DRIVER PROGRAM 
-#include<iostream> 
-#include<iomanip> 
+// DRIVER PROGRAM
+#include <iostream>
+#include <iomanip>
 #include "lib/components/line.h"
 #include "lib/components/background.h"
-#include "lib/components/smiley.h"
+#include "lib/components/tree.cpp"
 #include "lib/basicStructures.h"
 #include "lib/eventHandlers/mouse.h"
 #include "lib/eventHandlers/keyboard.h"
 #include "lib/eventHandlers/reshape.h"
-#include<GL/glut.h>
+#include <GL/glut.h>
+#include "game.h"
 
-using namespace std ; 
+using namespace std;
 
 
-void display(){
+void display()
+{
     // Just drawing random stuff for a trail run before Setting the stage for fun :)
-    CameraController::executeLookAt() ; 
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ; 
-    glClearColor(1,1,1,0) ; 
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(1, 1, 1, 0);
 
-    colorRed() ; 
-    drawBackGround() ;     
+    Game::handleObjects() ; 
+   
+    FrontCurtain::handleCurtainDisplay() ;
 
-    glutSwapBuffers() ; 
+    glutSwapBuffers();
 }
 
-void idleHandler(){
-    glutPostRedisplay() ; 
+void idleHandler()
+{
+    glutPostRedisplay();
 }
 
-
-void initializeGlut(int argc , char ** argv) {
+void initializeGlut(int argc, char **argv)
+{
     // Initializes glut and open up a window
-    glutInit(&argc, argv) ; 
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB)  ;
-    glutInitWindowSize(800 , 600) ; 
-    glutCreateWindow("Car And Hurdles") ; 
-    glutDisplayFunc(display) ; 
-    glutReshapeFunc(reshapeHandler) ; 
-    glutKeyboardFunc(keyboardHandler) ; 
-    glutMouseFunc(mouseHandler) ; 
-    glutMotionFunc(mouseMotionHandler) ; 
-    glutIdleFunc(idleHandler) ; 
-    glutSpecialFunc(specialKeyHandler) ; 
-    glEnable(GL_DEPTH_TEST) ; 
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
+    glutInitWindowSize(800, 600);
+    glutCreateWindow("Car And Hurdles");
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshapeHandler);
+    glutKeyboardFunc(keyboardHandler);
+    glutMouseFunc(mouseHandler);
+    glutMotionFunc(mouseMotionHandler);
+    glutIdleFunc(idleHandler);
+    glutSpecialFunc(specialKeyHandler);
 }
 
-
-int main(int argc , char ** argv){
-    initializeGlut(argc , argv) ; 
-    glutMainLoop() ; 
+int main(int argc, char **argv)
+{
+    initializeGlut(argc, argv);
+    glutMainLoop();
 }
