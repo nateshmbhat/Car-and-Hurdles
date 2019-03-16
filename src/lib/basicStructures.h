@@ -57,10 +57,10 @@ class CameraController
 };
 
 Point CameraController::up = {0, 1 , 0};
-Point CameraController::eye = {0, 0, 400};
+Point CameraController::eye = {0, 1, 400};
 Point CameraController::ref = {0, 0, 0};
 int CameraController::current = CameraController::EYE;
-int CameraController::changeValue = 5;
+int CameraController::changeValue = 1;
 
 void CameraController::changeMode(int mode)
 { //current is the flag : EYE , TARGET , UP

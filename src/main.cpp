@@ -47,6 +47,7 @@ void initializeGlut(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
+    srand(time(NULL)) ; 
     initializeGlut(argc, argv);
     glutMainLoop();
 }

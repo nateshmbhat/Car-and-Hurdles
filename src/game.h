@@ -13,15 +13,20 @@ class Game
     static int collisionDistance;  // if the distance between car and object is within this value , its treated as collision
     static list<Tree> trees;
     static unsigned long long int counter; //this is used to create objects at regular intervals
+    static int windowWidth , windowHeight ; 
 
   public:
     static void setSpeed(float x) { speed = x; }
+    static void setWindowWidth(float w) { windowWidth = w  ;  }
+    static void setWindowHeight(float h) { windowHeight= h  ;  }
     static float getSpeed() { return speed; }
+    static int getWindowHeight() { return windowHeight; }
+    static int getWindowWidth() { return windowWidth; }
 
     static void mainGameLoop() // runs every time the screen renders . Do all the game logic from here
     {
         counter++;
-        if (counter == 100)
+        if (counter >= 100*(1/speed))
         {
             if (trees.size() > 30)
             { //remove trees that are out of screen for long
@@ -40,6 +45,7 @@ class Game
             mytree.renderTree();
         }
 
+        renderRoad() ; 
         handleCollisionWithTrees() ; 
         Car::renderCar();
         
@@ -151,7 +157,8 @@ class Game
 };
 
 float Game::speed = 1;
-int Game::score = 0;
+int Game::score = 0 ; 
+int Game::windowWidth , Game::windowHeight;
 int Game::collisionDistance= 5;
 unsigned long long int Game::counter = 0;
 list<Tree> Game::trees;

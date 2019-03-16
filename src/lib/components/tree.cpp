@@ -12,7 +12,6 @@ class Tree
   public:
     Tree(float sp):speed(sp)
     {
-        srand(time(NULL)) ; 
         z = -400 ; 
         x = -25 ;
         x += rand()%50 ; 

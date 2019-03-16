@@ -12,5 +12,12 @@ void specialKeyHandler(int key , int b , int c){
 }
 
 void keyboardHandler(unsigned char c , int  a, int b){
-    if(c=='v')CameraController::setNextMode() ; 
+    switch(c){
+        case 'v' : CameraController::setNextMode() ; break;
+        case 'w' : CameraController::incY() ; break;
+        case 's' : CameraController::decY() ; break;
+        case 'a' : CameraController::decX() ; break;
+        case 'd' : CameraController::incX() ; break; 
+    }
+    glutReshapeWindow(Game::getWindowWidth() , Game::getWindowHeight()) ; 
 }
