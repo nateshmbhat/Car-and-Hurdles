@@ -191,7 +191,7 @@ class Car
         glColor3f(0, 1, 1);
         glTranslatef(x, y, z);
         glScalef(scalex, scaley, scalez);
-        glScalef(0.1, 0.1, 0.5);
+        glScalef(0.1, 0.1, 0.3);
         renderDesign();
         glPopMatrix();
     }

@@ -48,8 +48,18 @@ class Game
         renderRoad() ; 
         handleCollisionWithTrees() ; 
         Car::renderCar();
-        
+        renderScore() ;         
         FrontCurtain::handleCurtainDisplay();
+    }
+
+    static void renderScore(){
+        // NOT WORKING !
+        // glRasterPos2f(-10 , 20)  ;
+        // string k = "Score is " + score ; 
+        // glColor3f(0,0,0) ; 
+        // for(int i =0 ; i < k.length() ; i++){
+        //     glutBitmapCharacter(GLUT_BITMAP_8_BY_13,k[i]) ; 
+        // }
     }
 
     static void createTree()
