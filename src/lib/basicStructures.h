@@ -39,6 +39,7 @@ class CameraController
     static Point up;
     static Point eye;
     static Point ref;
+    static char upKey , downKey , leftKey , rightKey , modeKey ; 
     static int changeValue;
     static int current;
 
@@ -52,6 +53,7 @@ class CameraController
     static void incX();
     static void decZ();
     static void decX();
+    static void keyPressHandler(char) ; 
     static void decY();
     static void setChangeValue(const int &);
 };
@@ -61,11 +63,20 @@ Point CameraController::eye = {0, 1, 400};
 Point CameraController::ref = {0, 0, 0};
 int CameraController::current = CameraController::EYE;
 int CameraController::changeValue = 1;
+char CameraController::upKey='w' ,  CameraController::downKey ='s' , CameraController::leftKey='a' , CameraController::rightKey='d' , CameraController::modeKey ='v' ; 
 
 void CameraController::changeMode(int mode)
 { //current is the flag : EYE , TARGET , UP
     //sets the current vector that is active and enables that vector to change
     current = mode;
+}
+
+void CameraController::keyPressHandler(char c){
+    if(c==modeKey) CameraController::setNextMode() ; 
+    if(c==upKey) CameraController::incY()  ; 
+    if(c==downKey) CameraController::decY()  ; 
+    if(c==leftKey) CameraController::decX() ; 
+    if(c==rightKey) CameraController::incX() ; 
 }
 
 void CameraController::setNextMode()

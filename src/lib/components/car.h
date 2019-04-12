@@ -192,7 +192,6 @@ class Car
         glTranslatef(x, y, z);
         glScalef(scalex, scaley, scalez);
         glScalef(0.1, 0.1, 0.5);
-        // glutWireSphere(10, 50, 50); //assuming this is car.
         renderDesign();
         glPopMatrix();
     }
