@@ -28,6 +28,13 @@ void idleHandler()
     glutPostRedisplay();
 }
 
+void menuhandler(int id){
+    switch(id){
+        case 1 : Game::restartGame() ; break ; 
+        case 8 : exit(0) ; 
+    }
+}
+
 void initializeGlut(int argc, char **argv)
 {
     // Initializes glut and open up a window
@@ -43,6 +50,10 @@ void initializeGlut(int argc, char **argv)
     glutIdleFunc(idleHandler);
     glutSpecialFunc(specialKeyHandler);
 
+    int mainmenu = glutCreateMenu(menuhandler) ; 
+    glutAddMenuEntry("Restart Game" , 1) ; 
+    glutAddMenuEntry("Quit Game" , 8) ; 
+    glutAttachMenu(GLUT_RIGHT_BUTTON) ; 
 }
 
 int main(int argc, char **argv)

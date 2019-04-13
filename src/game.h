@@ -95,6 +95,16 @@ class Game
     }
 
 
+    static void restartGame(){
+        speed = 1;
+        score = 0;
+        collisionDistance = 5;
+        lives = 3;
+        gameOverFlag = false ; 
+        counter = 0;
+        trees.clear() ; 
+    }
+
     static void renderScore()
     {
         // NOT WORKING !
@@ -153,6 +163,13 @@ class Game
             for(int i =0 ;i < stringscore.length() ; i++){
                 glutBitmapCharacter(GLUT_BITMAP_9_BY_15 , stringscore[i]) ;
             }
+
+            glRasterPos2d(0,-10) ; 
+            message = "Right Click to Restart the Game " ; 
+            for(int i =0 ;i < message.length() ; i++){
+                glutBitmapCharacter(GLUT_BITMAP_9_BY_15 , message[i]) ;
+            }
+
 
         glPopMatrix() ; 
     }
