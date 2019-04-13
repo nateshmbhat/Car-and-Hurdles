@@ -86,7 +86,7 @@ void CameraController::setNextMode()
 
 void CameraController::executeLookAt()
 {
-    gluLookAt(eye.x, eye.y, eye.z, ref.x, ref.y, ref.z, up.x, up.y, up.z);
+    gluLookAt(eye.x, eye.y, -eye.z, ref.x, ref.y, ref.z, up.x, up.y, up.z);
 }
 
 void CameraController::setChangeValue(const int &val)

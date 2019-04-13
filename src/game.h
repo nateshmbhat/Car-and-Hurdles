@@ -30,15 +30,15 @@ class Game
         {
             if (trees.size() > 30)
             { //remove trees that are out of screen for long
+                cout<<" SCORE TILL NOW = " << score ; 
+                score+=1 ; 
                 trees.pop_front();
             }
             createTree();
-            cout<<" SCORE TILL NOW = " << score ; 
-            score+=1 ; 
             counter = 0;
         }
 
-        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        for (list<Tree>::iterator tree = trees.begin(); tree != trees.end(); tree++)
         {
             Tree &mytree = *tree;
             mytree.makeTreeMovement();
@@ -69,12 +69,12 @@ class Game
     }
 
     static void handleCollisionWithTrees(){ //checks if the car collides with trees
-        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        for (list<Tree>::iterator tree = trees.begin(); tree != trees.end(); tree++)
         {
             Tree &mytree = *tree;
             if(abs(Car::getZ() - mytree.getZ())<collisionDistance && abs(Car::getX()-mytree.getX())<collisionDistance){
                 cout<<"COLLISION DETECTED : Score = " << score <<endl; 
-                score-=1 ; 
+                score-=100 ; 
             }
         }
     }
@@ -95,7 +95,7 @@ class Game
 
     static void accelerateObjects()
     {
-        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        for (list<Tree>::iterator tree = trees.begin(); tree != trees.end(); tree++)
         {
             Tree &mytree = *tree;
             mytree.setSpeed(speed); //accelerate
@@ -104,7 +104,7 @@ class Game
 
     static void decelerateObjects()
     {
-        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        for (list<Tree>::iterator tree = trees.begin(); tree != trees.end(); tree++)
         {
             Tree &mytree = *tree;
             mytree.setSpeed(speed); //decelerate
@@ -141,25 +141,25 @@ class Game
 
     static void moveAllTreesForward()
     {
-        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        for (list<Tree>::iterator tree = trees.begin(); tree != trees.end(); tree++)
             (*tree).incZ();
     }
 
     static void moveAllTreesBackward()
     {
-        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        for (list<Tree>::iterator tree = trees.begin(); tree != trees.end(); tree++)
             (*tree).decZ();
     }
 
     static void moveAllTreesLeft()
     {
-        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        for (list<Tree>::iterator tree = trees.begin(); tree != trees.end(); tree++)
             (*tree).decX();
     }
 
     static void moveAllTreesRight()
     {
-        for (auto tree = trees.begin(); tree != trees.end(); tree++)
+        for (list<Tree>::iterator tree = trees.begin(); tree != trees.end(); tree++)
         {
             (*tree).incX();
         }
