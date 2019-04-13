@@ -11,7 +11,6 @@
 
 using namespace std;
 
-
 void display()
 {
     // Just drawing random stuff for a trail run before Setting the stage for fun :)
@@ -43,7 +42,7 @@ void initializeGlut(int argc, char **argv)
     glutMotionFunc(mouseMotionHandler);
     glutIdleFunc(idleHandler);
     glutSpecialFunc(specialKeyHandler);
-    // glEnable(GL_DEPTH_TEST);
+
 }
 
 int main(int argc, char **argv)
