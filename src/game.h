@@ -5,6 +5,7 @@
 #include "lib/components/car.h"
 #include "lib/components/curtain.h"
 #include "lib/components/tree.cpp"
+#include "lib/components/backgroundimage.h"
 
 class Game
 {
@@ -48,8 +49,27 @@ class Game
         renderRoad() ; 
         handleCollisionWithTrees() ; 
         Car::renderCar();
-        renderScore() ;         
+        renderLives() ; 
         FrontCurtain::handleCurtainDisplay();
+    }
+
+    static void renderLives(){
+        glPushMatrix() ; 
+        glColor3f(1,0,0) ; 
+        glTranslated(-40,80,0) ;  
+            glPushMatrix() ; 
+                glTranslated(-10,0,0) ; 
+                glutWireSphere(2 , 50,50) ; 
+            glPopMatrix() ; 
+            glPushMatrix() ; 
+                glTranslated(-20,0,0) ;  
+                glutWireSphere(2 , 50,50) ; 
+            glPopMatrix() ; 
+            glPushMatrix() ; 
+                glTranslated(-30,0,0) ;  
+                glutWireSphere(2 , 50,50) ; 
+            glPopMatrix() ; 
+        glPopMatrix() ; 
     }
 
     static void renderScore(){
@@ -75,6 +95,7 @@ class Game
             if(abs(Car::getZ() - mytree.getZ())<collisionDistance && abs(Car::getX()-mytree.getX())<collisionDistance){
                 cout<<"COLLISION DETECTED : Score = " << score <<endl; 
                 score-=1 ; 
+                mytree.changeTreeColorToRed() ; 
             }
         }
     }

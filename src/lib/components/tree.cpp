@@ -8,6 +8,8 @@ class Tree
     float x, y, z;
     float changeAmount, speed;
     int scalex, scaley, scalez;
+    double colorBase[3]  ;  
+    double colorTop[3]  ;  
 
   public:
     Tree(float sp):speed(sp)
@@ -17,11 +19,18 @@ class Tree
         x += rand()%50 ; 
         changeAmount = 1;
         scalex = scaley = scalez = 1;
+        colorBase[0] = 0.51 , colorBase[1]=  0, colorBase[2] = 0 ; 
+        colorTop[1] = 1 ; 
     }
 
     float getX(){return x ; }
     float getY(){return y ; }
     float getZ(){return z ; }
+
+    void changeTreeColorToRed(){
+        colorTop[0] = 1 ; 
+        colorTop[1] = 0 ;
+    }
 
     void setSpeed(float s){
         speed =s ; 
@@ -66,7 +75,7 @@ class Tree
 
     void renderTree()
     {
-        glColor3d(0.51, 0, 0);
+        glColor3dv(colorBase) ; 
         glPushMatrix();
         glTranslatef(x, y, z);
         glScalef(scalex, scaley, scalez);
@@ -77,7 +86,7 @@ class Tree
         glVertex3d(1, -4, 1);
         glVertex3d(-1, -4, 1);
         glEnd();
-        glColor3d(0, 1, 0);
+        glColor3dv(colorTop)  ;
         glutSolidSphere(2, 10, 10);
         glPopMatrix();
     }

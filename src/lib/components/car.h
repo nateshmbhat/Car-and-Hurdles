@@ -19,11 +19,13 @@ class Car
     static void goRight()
     {
         x += changeAmount;
+        if(x>18) x = 18 ;
     }
 
     static void goLeft()
     {
         x -= changeAmount;
+        if(x<-18) x = -18 ;
     }
 
     static void goForward()
