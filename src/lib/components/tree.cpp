@@ -17,7 +17,7 @@ class Tree
         z = -400 ; 
         x = -25 ;
         x += rand()%50 ; 
-        changeAmount = 1;
+        changeAmount = 0.1;
         scalex = scaley = scalez = 1;
         colorBase[0] = 0.51 , colorBase[1]=  0, colorBase[2] = 0 ; 
         colorTop[1] = 1 ; 

@@ -5,7 +5,6 @@
 #include "lib/components/car.h"
 #include "lib/components/curtain.h"
 #include "lib/components/tree.cpp"
-#include "lib/components/backgroundimage.h"
 
 class Game
 {
@@ -96,7 +95,7 @@ class Game
 
 
     static void restartGame(){
-        speed = 1;
+        speed = 0.1;
         score = 0;
         collisionDistance = 5;
         lives = 3;
@@ -261,7 +260,7 @@ class Game
     }
 };
 
-float Game::speed = 1;
+float Game::speed = 0.1;
 int Game::score = 0;
 int Game::windowWidth, Game::windowHeight;
 int Game::collisionDistance = 5;
